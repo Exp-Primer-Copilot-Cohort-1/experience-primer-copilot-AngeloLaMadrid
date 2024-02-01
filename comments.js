@@ -69,5 +69,10 @@ app.put('/comments/:id', (req, res) => {
 
 // DELETE /comments/:id
 app.delete('/comments/:id', (req, res) => {
-  const id = req.params.id;
-  db.collection('comments').deleteOne({ _id: ObjectId(id) }, (err,
+   const id = req.params.id;
+   db.collection('comments').deleteOne({ _id: ObjectId(id) }, (err, result) => {
+      if (err) return console.log(err);
+      console.log('Deleted in database');
+      res.json(result);
+   }); // Agregar una coma (',') al final de esta línea
+}); // Cerrar el paréntesis ')' en esta línea
